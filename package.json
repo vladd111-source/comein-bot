@@ -1,6 +1,12 @@
 {
+  "name": "comein-bot",
+  "version": "1.0.0",
   "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "telegraf": "^4.12.2"
+    "telegraf": "^4.16.2"
   }
 }
