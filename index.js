@@ -47,13 +47,17 @@ bot.start(async (ctx) => {
 const app = express();
 app.use(bot.webhookCallback('/secret-path'));
 
-// Установить Webhook (вставь свой Render-домен)
-bot.telegram.setWebhook('https://comein-bot.onrender.com/secret-path');
-
 // Простой пинг
 app.get('/', (req, res) => res.send('✅ Бот работает через Webhook'));
 
+// Запуск сервера
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Сервер слушает на порту ${PORT}`);
+  try {
+    await bot.telegram.setWebhook(`https://comein-bot.onrender.com/secret-path`);
+    console.log('✅ Webhook установлен');
+  } catch (err) {
+    console.error('❌ Ошибка установки webhook:', err);
+  }
 });
