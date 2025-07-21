@@ -5,6 +5,12 @@ const bot = new Telegraf('8186603899:AAFHQl8fowxIWPFKtu9q6ZxK2z2-maTvbCk');
 
 // Обработка команды /start
 bot.start((ctx) => {
+  const tgId = ctx.from.id;
+  const username = ctx.from.username || '—';
+  const source = ctx.startPayload || 'без метки';
+
+  console.log(`🟢 Новый пользователь: ${tgId} (@${username}), источник: ${source}`);
+
   ctx.reply('🚪 Готов войти в город?', {
     reply_markup: {
       inline_keyboard: [[
